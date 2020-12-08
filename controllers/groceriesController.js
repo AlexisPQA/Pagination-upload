@@ -53,7 +53,7 @@ exports.search =async (req, res, next) => {
 	})
 }
 
-exports.VHVN = (req, res, next) => {
+exports.VHVN = async (req, res, next) => {
 	// books.find({cate: "Văn học Việt Nam"}).then(function(book){
 	// 	res.render('groceries/groceries', {groceries:book});
 	// })
@@ -74,7 +74,7 @@ exports.VHVN = (req, res, next) => {
 	})
 }
 
-exports.PT = (req, res, next) => {
+exports.PT = async (req, res, next) => {
 	// books.find({cate: "Phép thuật"}).then(function(book){
 	// 	res.render('groceries/groceries', {groceries:book});
 	// })
