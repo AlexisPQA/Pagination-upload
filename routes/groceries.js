@@ -6,4 +6,5 @@ router.get('/', groceriesController.index);
 router.get('/search', groceriesController.search);
 router.get('/VHVN', groceriesController.VHVN);
 router.get('/PT', groceriesController.PT);
+router.get('/book', groceriesController.pagination);
 module.exports = router;

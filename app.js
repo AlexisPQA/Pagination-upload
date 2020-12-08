@@ -6,6 +6,9 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var mongoose = require('mongoose')
+var hbs = require('express-handlebars')
+const hbshelper = require('handlebars-helpers')
+const multihelpers = hbshelper()
 
 mongoose.connect(process.env.url, {useNewUrlParser: true, useUnifiedTopology: true})
 
@@ -18,11 +21,24 @@ var loginRouter = require('./routes/login');
 var groceriesRouter = require('./routes/groceries');
 var booksRouter = require('./routes/books');
 
+
 var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
+app.engine("hbs", hbs({
+	extname: "hbs",
+	helpers : multihelpers,
+	defaultLayout:false,
+	layoutsDir : __dirname + "/views/layout/",
+	paritalsDir: __dirname + "/views/paritals/",
+	runtimeOptions:{
+		allowProtoPropertiesByDefault: true,
+		allowProtoMethodsByDefault:true,
+	},
+}))
+
 
 app.use(logger('dev'));
 app.use(express.json());
