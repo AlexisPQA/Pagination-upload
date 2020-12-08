@@ -17,7 +17,7 @@ ItemPerPage = 9
 exports.index = async (req, res, next) => {
 	const page = +req.query.page || 1;
 	const paginate = await books.paginate({},{
-		page:1,
+		page:page,
 		limit:ItemPerPage,
 	});
 	res.render('groceries/groceries',{
@@ -27,33 +27,73 @@ exports.index = async (req, res, next) => {
 		hasPreviousPage : paginate.hasPrevPage,
 		nextPage : paginate.nextPage,
 		prevPage : paginate.prevPage,
-		lastPage : paginate.pageCount,
+		lastPage : paginate.totalPages,
 		ITEM_PER_PAGE: ItemPerPage,
 	})
 };
 
-exports.search = (req, res, next) => {
-	console.log(req.query)
-	books.find({title: req.query.q}).then(function(book){
-		res.render('groceries/groceries', {groceries:book});
+exports.search =async (req, res, next) => {
+	 // books.find({title: req.query.q}).then(function(book){
+	 // 	res.render('groceries/groceries', {groceries:book});
+	 // })
+	 const page = +req.query.page || 1;
+	const paginate = await books.paginate({title: req.query.q},{
+		page:page,
+		limit:ItemPerPage,
+	});
+	res.render('groceries/groceries',{
+		groceries: paginate.docs,
+		currentPage : paginate.currentPage,
+		hasNextPage : paginate.hasNextPage,
+		hasPreviousPage : paginate.hasPrevPage,
+		nextPage : paginate.nextPage,
+		prevPage : paginate.prevPage,
+		lastPage : paginate.totalPages,
+		ITEM_PER_PAGE: ItemPerPage,
 	})
 }
 
 exports.VHVN = (req, res, next) => {
-	books.find({cate: "Văn học Việt Nam"}).then(function(book){
-		res.render('groceries/groceries', {groceries:book});
+	// books.find({cate: "Văn học Việt Nam"}).then(function(book){
+	// 	res.render('groceries/groceries', {groceries:book});
+	// })
+	const page = +req.query.page || 1;
+	const paginate = await books.paginate({cate: "Văn học Việt Nam"},{
+		page:page,
+		limit:ItemPerPage,
+	});
+	res.render('groceries/groceries',{
+		groceries: paginate.docs,
+		currentPage : paginate.currentPage,
+		hasNextPage : paginate.hasNextPage,
+		hasPreviousPage : paginate.hasPrevPage,
+		nextPage : paginate.nextPage,
+		prevPage : paginate.prevPage,
+		lastPage : paginate.totalPages,
+		ITEM_PER_PAGE: ItemPerPage,
 	})
 }
 
 exports.PT = (req, res, next) => {
-	books.find({cate: "Phép thuật"}).then(function(book){
-		res.render('groceries/groceries', {groceries:book});
+	// books.find({cate: "Phép thuật"}).then(function(book){
+	// 	res.render('groceries/groceries', {groceries:book});
+	// })
+
+	const page = +req.query.page || 1;
+	const paginate = await books.paginate({cate: "Phép thuật"},{
+		page:page,
+		limit:ItemPerPage,
+	});
+	res.render('groceries/groceries',{
+		groceries: paginate.docs,
+		currentPage : paginate.currentPage,
+		hasNextPage : paginate.hasNextPage,
+		hasPreviousPage : paginate.hasPrevPage,
+		nextPage : paginate.nextPage,
+		prevPage : paginate.prevPage,
+		lastPage : paginate.totalPages,
+		ITEM_PER_PAGE: ItemPerPage,
 	})
 }
 
-
-exports.pagination = (req, res, next) => {
-	console.log(+req.query.page)
-	res.render('groceries/groceries', {current :1, nextPage :2});
-}
 

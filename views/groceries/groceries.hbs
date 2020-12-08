@@ -227,9 +227,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 							</a>
 						</li>
 						{{/isnt}}
-						{{#if hasNextPage}}
-						<li><a href="/groceries/book?page={{prevPage}}">{{prevPage}}</a></li>
 
+						{{#if hasPreviousPage}}
+						<li><a href="/groceries/book?page={{prevPage}}">{{prevPage}}</a></li>
 						{{/if}}
 
 						<li class="active"><a href="/groceries/book?page={{currentPage}}">1<span class="sr-only">{{currentPage}}</span></a></li>
