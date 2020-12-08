@@ -41,9 +41,18 @@ span.glyphicon.glyphicon-shopping-cart.my-cart-icon.my-cart-icon-affix {
 	margin:75px auto 30px;
 }
 .snipcart-thumb a {
+
     display: block;
     text-align: center;
 }
+.snipcart-thumb a img {
+    
+    height: auto; 
+    width: auto; 
+    max-width: 150px; 
+    max-height: 150px;
+}
+
 .my-cart-icon-affix i {
     background: #fe9126 !important;
 }

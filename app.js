@@ -1,17 +1,22 @@
+require('dotenv').config()
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+var mongoose = require('mongoose')
+
+mongoose.connect(process.env.url, {useNewUrlParser: true, useUnifiedTopology: true})
+
+
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var registeredRouter = require('./routes/registered');
 var loginRouter = require('./routes/login');
 var groceriesRouter = require('./routes/groceries');
-var detail1Router = require('./routes/detail1');
-var detail2Router = require('./routes/detail2');
-var detail3Router = require('./routes/detail3');
+var booksRouter = require('./routes/books');
 
 var app = express();
 
@@ -26,13 +31,13 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/index', indexRouter);
 app.use('/users', usersRouter);
 app.use('/registered', registeredRouter);
 app.use('/login', loginRouter);
 app.use('/groceries', groceriesRouter);
-app.use('/1', detail1Router);
-app.use('/2', detail2Router);
-app.use('/3', detail1Router);
+app.use('/book', booksRouter);
+
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
